@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InformationWallet } from './info-wallet.component';
+import { ConsultEvent } from './consult-event.component';
 
-describe('InformationWallet', () => {
-  let component: InformationWallet;
-  let fixture: ComponentFixture<InformationWallet>;
+describe('ConsultEvent', () => {
+  let component: ConsultEvent;
+  let fixture: ComponentFixture<ConsultEvent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InformationWallet ]
+      declarations: [ ConsultEvent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InformationWallet);
+    fixture = TestBed.createComponent(ConsultEvent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

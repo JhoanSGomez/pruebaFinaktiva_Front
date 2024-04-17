@@ -54,10 +54,6 @@ export class FormComponent implements OnInit {
   private initFormSignUp(): void {
     this.authForm = this.fb.group({
       name: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.min(1000000000)]],
-      cityCode: ['', Validators.required],
-      address: ['', Validators.required],
-      localCode: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
     });
