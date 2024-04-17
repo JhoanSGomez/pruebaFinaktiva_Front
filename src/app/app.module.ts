@@ -8,7 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { RegisterEvent } from './pages/register-event/register-event.component';
-import { InformationWallet } from './pages/info-wallet/info-wallet.component';
+import { ConsultEvent } from './pages/consult-event/consult-event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SignInModule } from './pages/auth/sign-in/sign-in.module';
@@ -18,7 +18,7 @@ import { SignUpModule } from './pages/auth/sign-up/sign-up.module';
 @NgModule({
   declarations: [
     AppComponent,
-    InformationWallet,
+    ConsultEvent,
     RegisterEvent
   ],
   imports: [
