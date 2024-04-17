@@ -1,0 +1,116 @@
+<section class="auth-form">
+  <div class="text-center">
+    <h1 class="h1">{{options.label}}</h1>
+  </div>
+  <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    <div class="dataRegister" *ngIf="options.id !== signIn">
+      <div class="mb-3">
+        <label for="inputName" class="form-label">Nombre completo</label>
+        <input formControlName="name" type="text" class="form-control" id="inputName" placeholder="Escriba su nombre" aria-describedby="nameHelp">
+        <div class="alert-danger" *ngIf="authForm.get('name')?.errors && (authForm.get('name')?.dirty || authForm.get('name')?.touched)">
+          <div class="container-error-message" *ngIf="authForm.get('name')?.hasError('required')">
+            El campo nombre completo es requerido
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputPhoneNumber" class="form-label">Número de telefono</label>
+        <input formControlName="phoneNumber" type="number" class="form-control" id="InputPhoneNumber" placeholder="Escriba su numero de telefono" aria-describedby="phoneNumberHelp">
+        <div class="alert-danger"
+          *ngIf="authForm.get('phoneNumber')?.errors && (authForm.get('phoneNumber')?.dirty || authForm.get('phoneNumber')?.touched)">
+          <div class="container-error-message" *ngIf="authForm.get('phoneNumber')?.hasError('required')">
+            El campo número de telefono es requerido
+          </div>
+          <div class="container-error-message" *ngIf="authForm.get('phoneNumber')?.hasError('min')">
+            El campo número de telefono debe contener mínimo 10 numeros
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputCity" class="form-label">Ciudad</label>
+        <select formControlName="cityCode" class="form-select" id="inputCity">
+          <option disabled selected>-- Seleccione una ciudad --</option>
+          <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+        </select>
+        <div class="alert-danger"
+          *ngIf="authForm.get('cityCode')?.errors && (authForm.get('cityCode')?.dirty || authForm.get('cityCode')?.touched)">
+          <div class="container-error-message" *ngIf="authForm.get('cityCode')?.hasError('required')">
+            El campo ciudad es requerido
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputAddress" class="form-label">Dirección</label>
+        <input formControlName="address" type="text" class="form-control" id="inputAddress" placeholder="Escriba su dirección" aria-describedby="addressHelp">
+        <div class="alert-danger"
+          *ngIf="authForm.get('address')?.errors && (authForm.get('address')?.dirty || authForm.get('address')?.touched)">
+          <div class="container-error-message" *ngIf="authForm.get('address')?.hasError('required')">
+            El campo dirección es requerido
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputLocal" class="form-label">Local en el que trabaja</label>
+        <select formControlName="localCode" class="form-select" id="inputLocal">
+          <option disabled selected>-- Seleccione un local --</option>
+          <option *ngFor="let local of locals" [value]="local.id">{{local.name}}</option>
+        </select>
+        <div class="alert-danger"
+          *ngIf="authForm.get('localCode')?.errors && (authForm.get('localCode')?.dirty || authForm.get('localCode')?.touched)">
+          <div class="container-error-message" *ngIf="authForm.get('localCode')?.hasError('required')">
+            El campo local en el que trabaja es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="inputEmail" class="form-label">Correo electrónico</label>
+      <input formControlName="email" type="email" class="form-control" id="inputEmail" placeholder="Escriba su correo electrónico" aria-describedby="emailHelp">
+      <div class="alert-danger" *ngIf="authForm.get('email')?.errors && (authForm.get('email')?.dirty || authForm.get('email')?.touched)">
+        <div class="container-error-message" *ngIf="authForm.get('email')?.hasError('required')">
+          El campo email es requerido
+        </div>
+        <div class="container-error-message" *ngIf="authForm.get('email')?.hasError('email')">
+          El campo debe ser de tipo email (Ej:nombregmail.com)
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="inputPassword" class="form-label">Contraseña</label>
+      <div class="password">
+        <input formControlName="password" [type]='hide ? "password" : "text"' class="form-control" id="inputPassword" placeholder="Escriba su contraseña">
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </div>
+      <div class="alert-danger"
+        *ngIf="authForm.get('password')?.errors && (authForm.get('password')?.dirty || authForm.get('password')?.touched)">
+        <div class="container-error-message" *ngIf="authForm.get('password')?.hasError('required')">
+          El campo contraseña es requerido
+        </div>
+        <div class="container-error-message" *ngIf="authForm.get('password')?.hasError('minlength')">
+          El campo contraseña debe contener mínimo 5 caracteres
+        </div>
+        <div class="container-error-message" *ngIf="authForm.get('password')?.hasError('maxlength')">
+          El campo contraseña debe contener máximo 15 caracteres
+        </div>
+      </div>
+    </div>
+    <div class="d-grid">
+      <button *ngIf="!spinner" type="submit" class="btn btn-primary" [disabled]="!authForm.valid">{{options.label}}</button>
+      <button *ngIf="spinner" type="submit" class="btn btn-primary" [disabled]="true">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="text-center mt-5">
+      <ng-container *ngIf="options.id === signIn; else showSignTemplate">
+        <a [routerLink]="['/sign-up']" class="text-black">Crear una nueva cuenta</a>
+      </ng-container>
+    </div>
+  </form>
+  <ng-template #showSignTemplate>
+    <a [routerLink]="['/sign-in']" class="text-black">
+      ¿Ya tiene una cuenta? <small>Acceda aquí!</small>
+    </a>
+  </ng-template>
+</section>

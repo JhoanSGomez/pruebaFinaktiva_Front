@@ -1,0 +1,66 @@
+<section id="consult" class="pb-5 pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-5 mx-auto">
+                <div class="card_register">
+                    <div>
+
+                        <form [formGroup]="form" class="consultaForm" (ngSubmit)="onSubmit()">
+                            <h1 class="h3 mb-3 font-weight-normal text-center">Consultar eventos</h1>
+                              
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <select class="form-control" formControlName="tipo">
+                                  <option></option>
+                                  <option value="API">API</option>
+                                  <option value="FORM">FORM</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Fecha inicio</label>
+                                <input type="datetime-local" class="form-control" formControlName="fechaInicio" name="fechaInicio">
+                              </div> 
+
+                              <div class="form-group">
+                                <label>Fecha fin</label>
+                                <input type="datetime-local" class="form-control" formControlName="fechaFin" name="fechaFin">
+                              </div>
+                            
+
+
+                            <button type="submit" class="btn btn-lg btn-primary btn-block">Registrar</button>
+                        </form>
+
+                    
+                    </div>
+                </div>
+            </div>
+            <br>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-md-8 m-auto">
+
+                <!-- Doc Column -->
+                <ng-container matColumnDef="fecha" sortActionDescription="Sort by document">
+                  <th mat-header-cell *matHeaderCellDef>Fecha </th>
+                  <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                </ng-container>
+          
+                <!-- Name Column -->
+                <ng-container matColumnDef="descripcion">
+                  <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+                  <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+                </ng-container>
+          
+                <!-- email Column -->
+                <ng-container matColumnDef="tipo">
+                  <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                  <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+              </table>
+        </div>
+    </div>
+</section>
