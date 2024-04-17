@@ -5,7 +5,6 @@
 ## Requisitos Previos
 
 - Node.js instalado versión estable v20.12.1 lts https://nodejs.org/en/blog/release/v20.12.1
-- Gestor de bases de datos MYSQL workbench instalado y configurado
 - Descargar un editor de codigo, en este caso visual estudio code
 
 ## Instalación
@@ -22,7 +21,12 @@
    ```bash
    npm install -g @angular/cli
 
-* 4. Instala las dependencias del proyecto:
+* 4. verificar que la instalación del gestor de Angular (@angular/cli) se realizó correctamente. Puedes hacer esto ejecutando:
+
+   ```bash
+   ng --version
+
+* 5. Instala las dependencias del proyecto:
 
    ```bash
    npm install
